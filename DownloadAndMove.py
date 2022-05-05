@@ -8,8 +8,8 @@ import shutil
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from_dir = "C:/Users/preet/Downloads"              # Add the path of you "Downloads" folder.
-to_dir = "C:/Users/preet/Desktop/Downloaded_Files" #Create "Document_Files" folder in your Desktop and update the path accordingly.
+from_dir = "C:/Users/preet/Downloads"              # Agrega la ruta detu carpeta "Descargas".
+to_dir = "C:/Users/preet/Desktop/Downloaded_Files" #Crea la carpeta "Document_Files" en tu escritorio y actualiza la ruta en consecuencia.
 
 
 dir_tree = {
@@ -19,7 +19,7 @@ dir_tree = {
     "Setup_Files": ['.exe', '.bin', '.cmd', '.msi', '.dmg']
 }
 
-# Event Hanlder Class
+# Event Handler Class
 
 class FileMovementHandler(FileSystemEventHandler):
 
@@ -36,7 +36,7 @@ class FileMovementHandler(FileSystemEventHandler):
 
                 file_name = os.path.basename(event.src_path)
                
-                print("Downloaded " + file_name)
+                print("Descargado " + file_name)
 
                 path1 = from_dir + '/' + file_name
                 path2 = to_dir + '/' + key
@@ -44,34 +44,34 @@ class FileMovementHandler(FileSystemEventHandler):
 
                 if os.path.exists(path2):
 
-                    print("Directory Exists...")
-                    print("Moving " + file_name + "....")
+                    print("El directorio no existe...")
+                    print("Moviendo " + file_name + "....")
                     shutil.move(path1, path3)
                     time.sleep(1)
 
                 else:
-                    print("Making Directory...")
+                    print("Creando directorio...")
                     os.makedirs(path2)
-                    print("Moving " + file_name + "....")
+                    print("Moviendo " + file_name + "....")
                     shutil.move(path1, path3)
                     time.sleep(1)
 
-# Initialize Event Handler Class
+# Inicia Event Handler Class
 event_handler = FileMovementHandler()
 
-# Initialize Observer
+# Inicia Observer
 observer = Observer()
 
 # Schedule the Observer
 observer.schedule(event_handler, from_dir, recursive=True)
 
-# Start the Observer
+# Inicia Observer
 observer.start()
 
 try:
     while True:
         time.sleep(2)
-        print("running...")
+        print("ejecutando...")
 except KeyboardInterrupt:
     print("stopped!")
     observer.stop()
