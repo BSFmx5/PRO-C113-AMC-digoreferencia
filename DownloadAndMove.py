@@ -73,6 +73,6 @@ try:
         time.sleep(2)
         print("ejecutando...")
 except KeyboardInterrupt:
-    print("stopped!")
+    print("¡detenido!")
     observer.stop()
 
