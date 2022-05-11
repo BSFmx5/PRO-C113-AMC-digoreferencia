@@ -8,7 +8,7 @@ import shutil
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from_dir = "C:/Users/preet/Downloads"              # Agrega la ruta detu carpeta "Descargas".
+from_dir = "C:/Users/preet/Downloads"              # Agrega la ruta de tu carpeta "Descargas".
 to_dir = "C:/Users/preet/Desktop/Downloaded_Files" #Crea la carpeta "Document_Files" en tu escritorio y actualiza la ruta en consecuencia.
 
 
@@ -19,7 +19,7 @@ dir_tree = {
     "Setup_Files": ['.exe', '.bin', '.cmd', '.msi', '.dmg']
 }
 
-# Event Handler Class
+# Clase Event Handler
 
 class FileMovementHandler(FileSystemEventHandler):
 
@@ -44,7 +44,7 @@ class FileMovementHandler(FileSystemEventHandler):
 
                 if os.path.exists(path2):
 
-                    print("El directorio no existe...")
+                    print("El directorio existe...")
                     print("Moviendo " + file_name + "....")
                     shutil.move(path1, path3)
                     time.sleep(1)
@@ -56,13 +56,13 @@ class FileMovementHandler(FileSystemEventHandler):
                     shutil.move(path1, path3)
                     time.sleep(1)
 
-# Inicia Event Handler Class
+# Inicializar clase Event Handler
 event_handler = FileMovementHandler()
 
 # Inicia Observer
 observer = Observer()
 
-# Schedule the Observer
+# Programar el Observer
 observer.schedule(event_handler, from_dir, recursive=True)
 
 # Inicia Observer
